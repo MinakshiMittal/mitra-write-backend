@@ -4,6 +4,10 @@ const cors = require("cors");
 
 const { mongoDBConnection } = require("./db/db.connect");
 const user = require("./routes/users.router");
+const labels = require("./routes/labels.router");
+const labelsList = require("./routes/labelsList.router");
+const notes = require("./routes/notes.router");
+const notesList = require("./routes/notesList.router");
 
 const app = express();
 app.use(bodyParser.json());
@@ -12,6 +16,10 @@ app.use(cors());
 mongoDBConnection();
 
 app.use("/user", user);
+app.use("/notes", notes);
+app.use("/notes-list", notesList);
+app.use("/labels", labels);
+app.use("/labels-list", labelsList);
 
 app.get('/', (req, res) => {
   res.send('Hello Express app!')
